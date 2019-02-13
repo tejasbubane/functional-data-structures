@@ -1,7 +1,7 @@
 import Test.Hspec
 
-import qualified HelloSpec
+import qualified ListSpec
 
 main :: IO ()
 main = hspec $ do
-  HelloSpec.specs
+  ListSpec.specs
