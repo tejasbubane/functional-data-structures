@@ -32,3 +32,20 @@ specs = describe "List" $ do
       tl (Cons 2 (Cons 3 Nil)) `shouldBe` Just (Cons 3 Nil)
     it "returns Nothing for empty list" $ do
       tl Nil `shouldBe` (Nothing :: Maybe (List Int))
+
+  -- Exercises
+  describe "append" $ do
+    it "appends empty lists" $ do
+      append Nil Nil `shouldBe` (Nil :: List Int)
+    it "appends non-empty lists" $ do
+      append Nil (Cons 2 Nil) `shouldBe` Cons 2 Nil
+      append (Cons 3 Nil) Nil `shouldBe` Cons 3 Nil
+      append (Cons 1 (Cons 2 Nil)) (Cons 3 (Cons 4 Nil))  `shouldBe` Cons 1 (Cons 2 (Cons 3 (Cons 4 Nil)))
+
+  describe "update" $ do
+    it "returns Nothing for empty list" $ do
+      update Nil 2 1 `shouldBe` Nothing
+    it "returns Nothing index greater than length" $ do
+      update (Cons 1 Nil) 2 10 `shouldBe` Nothing
+    it "returns updated list" $ do
+      update (Cons 1 (Cons 2 Nil)) 2 1 `shouldBe` Just (Cons 2 (Cons 2 Nil))

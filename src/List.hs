@@ -21,3 +21,16 @@ hd (Cons x xs) = Just x
 tl :: List a -> Maybe (List a)
 tl Nil = Nothing
 tl (Cons x xs) = Just xs
+
+-- Exercises
+append :: List a -> List a -> List a
+append Nil xs = xs
+append xs Nil = xs
+append (Cons x xs) ys =
+  Cons x (append xs ys)
+
+update :: List a -> a -> Int -> Maybe (List a)
+update Nil _ _ = Nothing
+update (Cons _ _) _ 0 = Nothing
+update (Cons x xs) y 1 = Just $ Cons y xs
+update (Cons x xs) y n = update xs y (n - 1)
