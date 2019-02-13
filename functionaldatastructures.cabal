@@ -1,0 +1,29 @@
+name:                functionaldatastructures
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/tejasbubane/functional-data-structures#readme
+author:              Tejas Bubane
+maintainer:          tejasbubane@gmail.com
+copyright:           2018-2019 Tejas Bubane
+category:            data-structures
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+library
+  hs-source-dirs:      src
+  default-language:    Haskell2010
+  build-depends:       base
+  exposed-modules:     Hello
+
+test-suite tests
+  ghc-options:         -Wall
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      spec, src
+  main-is:             Spec.hs
+  default-language:    Haskell2010
+  build-depends:       base
+                     , hspec
+  other-modules:       Hello
+                     , HelloSpec
