@@ -6,10 +6,18 @@ data Tree a = Nil | Node (Tree a) a (Tree a)
 type Set = Tree
 
 empty :: Set a
-empty = error "todo"
+empty = Nil
 
 insert :: Ord a => a -> Set a -> Set a
-insert = error "todo"
+insert x Nil = Node Nil x Nil
+insert x tree@(Node left y right)
+  | x < y = Node (insert x left) y right
+  | x > y = (Node left y (insert x right))
+  | otherwise = tree
 
 member :: Ord a => a -> Set a -> Bool
-member = error "todo"
+member x Nil = False
+member x (Node left y right)
+  | x == y = True
+  | x < y  = member x left
+  | x > y  = member x right
