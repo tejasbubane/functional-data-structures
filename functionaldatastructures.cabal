@@ -17,6 +17,7 @@ library
   build-depends:       base
   exposed-modules:     List
                      , BinarySearchTree
+                     , LeftistHeap
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -31,3 +32,5 @@ test-suite tests
                      , ListSpec
                      , BinarySearchTree
                      , BinarySearchTreeSpec
+                     , LeftistHeap
+                     , LeftistHeapSpec
