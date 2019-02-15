@@ -21,3 +21,7 @@ member x (Node left y right)
   | x == y = True
   | x < y  = member x left
   | x > y  = member x right
+
+instance Functor Tree where
+  fmap f Nil = Nil
+  fmap f (Node left x right) = Node (fmap f left) (f x) (fmap f right)
