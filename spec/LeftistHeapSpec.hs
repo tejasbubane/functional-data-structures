@@ -57,3 +57,11 @@ specs = describe "Heap" $ do
       deleteMin (singleton 4) `shouldBe` Just Nil
     it "returns Heap of remainining elements for non-empty heap" $ do
       deleteMin h `shouldBe` Just (Node 6 (Node 12 (singleton 15) Nil 1) Nil 1)
+
+  -- Exercise: Build heap from list
+  describe "fromList" $ do
+    it "return Nil for empty List" $ do
+      fromList [] `shouldBe` (Nil :: Heap Int)
+    it "converts list to heap" $ do
+      fromList [5, 6, 12, 15] `shouldBe`
+        Node 5 (Node 6 (Node 12 (Node 15 Nil Nil 1) Nil 1) Nil 1) Nil 1

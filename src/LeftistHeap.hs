@@ -39,3 +39,9 @@ findMin (Node el _ _ _) = Just el
 deleteMin :: Ord a => Heap a -> Maybe (Heap a)
 deleteMin Nil = Nothing
 deleteMin (Node x left right _) = Just $ merge left right
+
+-- Exercise: Build heap from list
+fromList :: Ord a => [a] -> Heap a
+fromList [] = Nil
+fromList xs = foldr merge Nil $ map newT $ xs
+  where newT x = Node x Nil Nil 1
