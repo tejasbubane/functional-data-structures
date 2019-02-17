@@ -12,13 +12,22 @@ cabal-version:       >=1.10
 extra-source-files:  README.md
 
 library
-  hs-source-dirs:      src
+  hs-source-dirs:      src, spec
   default-language:    Haskell2010
   build-depends:       base
+                     , hspec
+                     , QuickCheck
+                     , checkers
   exposed-modules:     List
                      , BinarySearchTree
                      , LeftistHeap
                      , BinomialHeap
+                     , RedBlackTree
+  other-modules:       ListSpec
+                     , BinarySearchTreeSpec
+                     , LeftistHeapSpec
+                     , BinomialHeapSpec
+                     , RedBlackTreeSpec
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -37,3 +46,5 @@ test-suite tests
                      , LeftistHeapSpec
                      , BinomialHeap
                      , BinomialHeapSpec
+                     , RedBlackTree
+                     , RedBlackTreeSpec
