@@ -18,6 +18,7 @@ library
   exposed-modules:     List
                      , BinarySearchTree
                      , LeftistHeap
+                     , BinomialHeap
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -34,3 +35,5 @@ test-suite tests
                      , BinarySearchTreeSpec
                      , LeftistHeap
                      , LeftistHeapSpec
+                     , BinomialHeap
+                     , BinomialHeapSpec
