@@ -23,11 +23,13 @@ library
                      , LeftistHeap
                      , BinomialHeap
                      , RedBlackTree
+                     , Queue
   other-modules:       ListSpec
                      , BinarySearchTreeSpec
                      , LeftistHeapSpec
                      , BinomialHeapSpec
                      , RedBlackTreeSpec
+                     , QueueSpec
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -48,3 +50,5 @@ test-suite tests
                      , BinomialHeapSpec
                      , RedBlackTree
                      , RedBlackTreeSpec
+                     , Queue
+                     , QueueSpec
