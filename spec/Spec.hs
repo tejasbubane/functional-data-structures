@@ -6,6 +6,7 @@ import qualified LeftistHeapSpec
 import qualified BinomialHeapSpec
 import qualified RedBlackTreeSpec
 import qualified QueueSpec
+import qualified AmortizedQueueSpec
 
 main :: IO ()
 main = hspec $ do
@@ -15,3 +16,4 @@ main = hspec $ do
   BinomialHeapSpec.specs
   RedBlackTreeSpec.specs
   QueueSpec.specs
+  AmortizedQueueSpec.specs

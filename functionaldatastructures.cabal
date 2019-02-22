@@ -24,12 +24,14 @@ library
                      , BinomialHeap
                      , RedBlackTree
                      , Queue
+                     , AmortizedQueue
   other-modules:       ListSpec
                      , BinarySearchTreeSpec
                      , LeftistHeapSpec
                      , BinomialHeapSpec
                      , RedBlackTreeSpec
                      , QueueSpec
+                     , AmortizedQueueSpec
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -52,3 +54,5 @@ test-suite tests
                      , RedBlackTreeSpec
                      , Queue
                      , QueueSpec
+                     , AmortizedQueue
+                     , AmortizedQueueSpec
