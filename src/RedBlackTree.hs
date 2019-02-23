@@ -18,30 +18,11 @@ data RBTree a =
 
 -- member is same as BST (we ignore the colors)
 member :: Ord a => a -> RBTree a -> Bool
-member _ Empty = False
-member x (Node _ left y right)
-  | x == y    = True
-  | x < y     = member x left
-  | otherwise = member x right
+member = error "todo"
 
 -- insert and delete are different since they must maintain the invariants
 insert :: Ord a => a -> RBTree a -> RBTree a
-insert x s = blacken $ ins s
-  where blacken (Node _ left el right) = Node Black left el right
-        ins Empty = Node Red Empty x Empty
-        ins s@(Node color left y right)
-          -- same as BST except balancing on every step to maintain invariants
-          | x < y     = balance $ Node color (ins left) y right
-          | x > y     = balance $ Node color left y (ins right)
-          | otherwise = s
+insert = error "todo"
 
 balance :: RBTree a -> RBTree a
-balance (Node Black (Node Red a x (Node Red b y c)) z d) =
-  Node Red (Node Black a x b) y (Node Black c z d)
-balance (Node Black (Node Red (Node Red a x b) y c) z d) =
-  Node Red (Node Black a x b) y (Node Black c z d)
-balance (Node Black a x (Node Red b y (Node Red c z d))) =
-  Node Red (Node Black a x b) y (Node Black c z d)
-balance (Node Black a x (Node Red (Node Red b y c) z d)) =
-  Node Red (Node Black a x b) y (Node Black c z d)
-balance node = node
+balance = error "todo"

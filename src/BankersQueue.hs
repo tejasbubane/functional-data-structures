@@ -5,25 +5,19 @@ data Queue a =
   deriving (Eq, Show)
 
 empty :: Queue a
-empty = Queue 0 [] 0 []
+empty = error "todo"
 
 isEmpty :: Queue a -> Bool
-isEmpty (Queue 0 _ _ _) = True
-isEmpty _               = False
+isEmpty = error "todo"
 
 head :: Queue a -> a
-head (Queue _ [] _ _) = error "empty queue"
-head (Queue _ (f:_) _ _) = f
+head = error "todo"
 
 tail :: Queue a -> Queue a
-tail (Queue _ [] _ _) = error "empty queue"
-tail (Queue lenf (f:fs) lenr rs) = check $ Queue (lenf - 1) fs lenr rs
+tail = error "todo"
 
 snoc :: a -> Queue a -> Queue a
-snoc x (Queue _ [] _ _) = Queue 1 [x] 0 []
-snoc x (Queue lenf fs lenr rs) = check $ Queue lenf fs (lenr + 1) (x:rs)
+snoc = error "todo"
 
 check :: Queue a -> Queue a
-check q@(Queue lenf fs lenr rs)
-  | lenf <= lenr = Queue (lenf + lenr) (fs ++ reverse rs) 0 []
-  | otherwise = q
+check = error "todo"
