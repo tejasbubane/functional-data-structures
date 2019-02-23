@@ -8,6 +8,7 @@ import qualified RedBlackTreeSpec
 import qualified QueueSpec
 import qualified BankersQueueSpec
 import qualified DequeSpec
+import qualified TrieSpec
 
 main :: IO ()
 main = hspec $ do
@@ -19,3 +20,4 @@ main = hspec $ do
   QueueSpec.specs
   BankersQueueSpec.specs
   DequeSpec.specs
+  TrieSpec.specs

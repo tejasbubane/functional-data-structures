@@ -18,6 +18,7 @@ library
                      , hspec
                      , QuickCheck
                      , checkers
+                     , containers
   exposed-modules:     List
                      , BinarySearchTree
                      , LeftistHeap
@@ -26,6 +27,7 @@ library
                      , Queue
                      , BankersQueue
                      , Deque
+                     , Trie
   other-modules:       ListSpec
                      , BinarySearchTreeSpec
                      , LeftistHeapSpec
@@ -34,6 +36,7 @@ library
                      , QueueSpec
                      , BankersQueueSpec
                      , DequeSpec
+                     , TrieSpec
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -44,6 +47,7 @@ test-suite tests
                      , hspec
                      , QuickCheck
                      , checkers
+                     , containers
   other-modules:       List
                      , ListSpec
                      , BinarySearchTree
@@ -60,3 +64,5 @@ test-suite tests
                      , BankersQueueSpec
                      , Deque
                      , DequeSpec
+                     , Trie
+                     , TrieSpec
