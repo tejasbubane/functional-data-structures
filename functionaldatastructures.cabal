@@ -24,7 +24,7 @@ library
                      , BinomialHeap
                      , RedBlackTree
                      , Queue
-                     , AmortizedQueue
+                     , BankersQueue
                      , Deque
   other-modules:       ListSpec
                      , BinarySearchTreeSpec
@@ -32,7 +32,7 @@ library
                      , BinomialHeapSpec
                      , RedBlackTreeSpec
                      , QueueSpec
-                     , AmortizedQueueSpec
+                     , BankersQueueSpec
                      , DequeSpec
 
 test-suite tests
@@ -56,7 +56,7 @@ test-suite tests
                      , RedBlackTreeSpec
                      , Queue
                      , QueueSpec
-                     , AmortizedQueue
-                     , AmortizedQueueSpec
+                     , BankersQueue
+                     , BankersQueueSpec
                      , Deque
                      , DequeSpec

@@ -1,7 +1,7 @@
-module AmortizedQueueSpec where
+module BankersQueueSpec where
 
 import Test.Hspec
-import AmortizedQueue
+import BankersQueue
 import Prelude hiding (head, tail)
 import Control.Exception (evaluate)
 

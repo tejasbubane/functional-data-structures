@@ -1,4 +1,4 @@
-module AmortizedQueue where
+module BankersQueue where
 
 data Queue a =
   Queue Int [a] Int [a]
