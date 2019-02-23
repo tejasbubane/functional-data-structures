@@ -25,6 +25,7 @@ library
                      , RedBlackTree
                      , Queue
                      , AmortizedQueue
+                     , Deque
   other-modules:       ListSpec
                      , BinarySearchTreeSpec
                      , LeftistHeapSpec
@@ -32,6 +33,7 @@ library
                      , RedBlackTreeSpec
                      , QueueSpec
                      , AmortizedQueueSpec
+                     , DequeSpec
 
 test-suite tests
   type:                exitcode-stdio-1.0
@@ -56,3 +58,5 @@ test-suite tests
                      , QueueSpec
                      , AmortizedQueue
                      , AmortizedQueueSpec
+                     , Deque
+                     , DequeSpec
