@@ -2,6 +2,7 @@ module LeftistHeapSpec where
 
 import Test.Hspec
 import LeftistHeap
+import Control.Exception (evaluate)
 
 singleton :: a -> Heap a
 singleton x = Node x Nil Nil 1
@@ -44,19 +45,19 @@ specs = describe "Heap" $ do
         Node 5 (singleton 6) (Node 10 (Node 12 (singleton 15) Nil 1) Nil 1) 2
 
   describe "findMin" $ do
-    it "returns Nothing for empty heap" $ do
-      findMin (Nil :: Heap Int) `shouldBe` Nothing
+    it "raises exception for empty heap" $ do
+      evaluate (findMin (Nil :: Heap Int)) `shouldThrow` anyException
     it "returns topmost element for non-empty heap" $ do
-      findMin (singleton 3) `shouldBe` Just 3
-      findMin (Node 1 (singleton 7) (singleton 4) 2) `shouldBe` Just 1
+      findMin (singleton 3) `shouldBe` 3
+      findMin (Node 1 (singleton 7) (singleton 4) 2) `shouldBe` 1
 
   describe "deleteMin" $ do
-    it "returns Nothing for empty heap" $ do
-      deleteMin (Nil :: Heap Int) `shouldBe` Nothing
+    it "raises exception for empty heap" $ do
+      evaluate (deleteMin (Nil :: Heap Int)) `shouldThrow` anyException
     it "returns Nil for single element heap" $ do
-      deleteMin (singleton 4) `shouldBe` Just Nil
+      deleteMin (singleton 4) `shouldBe` Nil
     it "returns Heap of remainining elements for non-empty heap" $ do
-      deleteMin h `shouldBe` Just (Node 6 (Node 12 (singleton 15) Nil 1) Nil 1)
+      deleteMin h `shouldBe` Node 6 (Node 12 (singleton 15) Nil 1) Nil 1
 
   -- Exercise: Build heap from list
   describe "fromList" $ do

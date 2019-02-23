@@ -11,13 +11,13 @@ isEmpty :: Queue a -> Bool
 isEmpty (Queue f _) = null f
 
 -- remove from front
-head :: Queue a -> Maybe a
-head (Queue [] _)     = Nothing
-head (Queue (x:f) _) = Just x
+head :: Queue a -> a
+head (Queue [] _)     = error "empty queue"
+head (Queue (x:f) _) = x
 
-tail :: Queue a -> Maybe (Queue a)
-tail (Queue [] _) = Nothing
-tail (Queue (x:f) r) = Just $ checkf f r
+tail :: Queue a -> Queue a
+tail (Queue [] _) = error "empty queue"
+tail (Queue (x:f) r) = checkf f r
 
 -- add to end
 snoc :: a -> Queue a -> Queue a

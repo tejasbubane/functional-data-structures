@@ -3,6 +3,7 @@ module QueueSpec where
 import Test.Hspec
 import Queue
 import Prelude hiding (head, tail)
+import Control.Exception (evaluate)
 
 specs :: SpecWith ()
 specs = describe "Queue" $ do
@@ -17,20 +18,20 @@ specs = describe "Queue" $ do
       isEmpty (Queue [2, 3] [1, 5]) `shouldBe` False
 
   describe "head" $ do
-    it "is Nothing for empty queue" $ do
-      head (empty :: Queue Int) `shouldBe` Nothing
+    it "raises exception for empty queue" $ do
+      evaluate (head (empty :: Queue Int)) `shouldThrow` anyException
     it "is the first element of f for non-empty queue" $ do
-      head (Queue [1] []) `shouldBe` Just 1
-      head (Queue [2, 3] [1, 5]) `shouldBe` Just 2
+      head (Queue [1] []) `shouldBe` 1
+      head (Queue [2, 3] [1, 5]) `shouldBe` 2
 
   describe "tail" $ do
-    it "is Nothing for empty queue" $ do
-      tail (empty :: Queue Int) `shouldBe` Nothing
+    it "raises exception for empty queue" $ do
+      evaluate (tail (empty :: Queue Int)) `shouldThrow` anyException
     it "is everything but the first element for non-empty queue" $ do
-      tail (Queue [1] []) `shouldBe` Just empty
-      tail (Queue [2, 3] [1, 5]) `shouldBe` Just (Queue [3] [1, 5])
+      tail (Queue [1] []) `shouldBe` empty
+      tail (Queue [2, 3] [1, 5]) `shouldBe` Queue [3] [1, 5]
     it "reverses rear to front when front becomes empty (invariant)" $ do
-      tail (Queue [2] [1, 5]) `shouldBe` Just (Queue [5, 1] [])
+      tail (Queue [2] [1, 5]) `shouldBe` Queue [5, 1] []
 
   describe "snoc" $ do
     it "adds element to end of queue" $ do

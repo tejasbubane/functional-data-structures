@@ -14,13 +14,13 @@ isEmpty _   = False
 cons :: a -> List a -> List a
 cons x xs = Cons x xs
 
-hd :: List a -> Maybe a
-hd Nil = Nothing
-hd (Cons x xs) = Just x
+hd :: List a -> a
+hd Nil = error "empty list"
+hd (Cons x xs) = x
 
-tl :: List a -> Maybe (List a)
-tl Nil = Nothing
-tl (Cons x xs) = Just xs
+tl :: List a -> List a
+tl Nil = error "empty list"
+tl (Cons x xs) = xs
 
 -- Exercises
 append :: List a -> List a -> List a
@@ -29,8 +29,7 @@ append xs Nil = xs
 append (Cons x xs) ys =
   Cons x (append xs ys)
 
-update :: List a -> a -> Int -> Maybe (List a)
-update Nil _ _ = Nothing
-update (Cons _ _) _ 0 = Nothing
-update (Cons x xs) y 1 = Just $ Cons y xs
+update :: List a -> a -> Int -> List a
+update Nil _ _ = error "index out of bounds"
+update (Cons x xs) y 0 = Cons y xs
 update (Cons x xs) y n = update xs y (n - 1)
