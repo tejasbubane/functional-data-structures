@@ -32,13 +32,13 @@ insert :: Ord a => a -> Heap a -> Heap a
 insert el h = merge h (newT el)
   where newT x = Node x Nil Nil 1
 
-findMin :: Ord a => Heap a -> a
-findMin Nil = error "empty heap"
-findMin (Node el _ _ _) = el
+findMin :: Ord a => Heap a -> Maybe a
+findMin Nil = Nothing
+findMin (Node el _ _ _) = Just el
 
-deleteMin :: Ord a => Heap a -> Heap a
-deleteMin Nil = error "empty heap"
-deleteMin (Node x left right _) = merge left right
+deleteMin :: Ord a => Heap a -> Maybe (Heap a)
+deleteMin Nil = Nothing
+deleteMin (Node x left right _) = Just $ merge left right
 
 -- Exercise: Build heap from list
 fromList :: Ord a => [a] -> Heap a

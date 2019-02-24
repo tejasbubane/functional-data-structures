@@ -15,14 +15,14 @@ isEmpty (Queue 0 _ _ _) = True
 isEmpty _               = False
 
 -- Return next element to be removed from Queue
-head :: Queue a -> a
-head (Queue _ [] _ _) = error "empty queue"
-head (Queue _ (f:_) _ _) = f
+head :: Queue a -> Maybe a
+head (Queue _ [] _ _) = Nothing
+head (Queue _ (f:_) _ _) = Just f
 
 -- Return Queue without head (element to be removed)
-tail :: Queue a -> Queue a
-tail (Queue _ [] _ _) = error "empty queue"
-tail (Queue lenf (f:fs) lenr rs) = check $ Queue (lenf - 1) fs lenr rs
+tail :: Queue a -> Maybe (Queue a)
+tail (Queue _ [] _ _) = Nothing
+tail (Queue lenf (f:fs) lenr rs) = Just $ check $ Queue (lenf - 1) fs lenr rs
 
 -- Add elements to rear
 snoc :: a -> Queue a -> Queue a

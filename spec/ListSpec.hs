@@ -2,7 +2,7 @@ module ListSpec where
 
 import Test.Hspec
 import List
-import Control.Exception (evaluate)
+import Prelude hiding (head, tail)
 
 specs :: SpecWith ()
 specs = describe "List" $ do
@@ -24,15 +24,15 @@ specs = describe "List" $ do
 
   describe "head" $ do
     it "works for non-empty list" $ do
-      hd (Cons 2 (Cons 3 Nil)) `shouldBe` 2
+      head (Cons 2 (Cons 3 Nil)) `shouldBe` Just 2
     it "raises exception for empty list" $ do
-      evaluate (hd Nil) `shouldThrow` anyException
+      head (Nil :: List Char) `shouldBe` Nothing
 
   describe "tail" $ do
     it "works for non-empty list" $ do
-      tl (Cons 2 (Cons 3 Nil)) `shouldBe` Cons 3 Nil
+      tail (Cons 2 (Cons 3 Nil)) `shouldBe` Just (Cons 3 Nil)
     it "raises exception for empty list" $ do
-      evaluate (tl Nil) `shouldThrow` anyException
+      tail (Nil :: List Int) `shouldBe` Nothing
 
   -- Exercises
   describe "append" $ do
@@ -41,12 +41,15 @@ specs = describe "List" $ do
     it "appends non-empty lists" $ do
       append Nil (Cons 2 Nil) `shouldBe` Cons 2 Nil
       append (Cons 3 Nil) Nil `shouldBe` Cons 3 Nil
-      append (Cons 1 (Cons 2 Nil)) (Cons 3 (Cons 4 Nil))  `shouldBe` Cons 1 (Cons 2 (Cons 3 (Cons 4 Nil)))
+      append (Cons 1 (Cons 2 Nil)) (Cons 3 (Cons 4 Nil))  `shouldBe`
+        Cons 1 (Cons 2 (Cons 3 (Cons 4 Nil)))
 
   describe "update" $ do
-    it "raises exception for empty list" $ do
-      evaluate (update Nil 2 1) `shouldThrow` anyException
-    it "raises exception index greater than length" $ do
-      evaluate (update (Cons 1 Nil) 2 10) `shouldThrow` anyException
+    it "returns Nothing for empty list" $ do
+      update Nil 2 1 `shouldBe` Nothing
+    it "returns Nothing index greater than length" $ do
+      update (Cons 1 Nil) 2 10 `shouldBe` Nothing
     it "returns updated list" $ do
-      update (Cons 1 (Cons 2 Nil)) 2 0 `shouldBe` Cons 2 (Cons 2 Nil)
+      update (Cons 1 (Cons 2 Nil)) 2 0 `shouldBe` Just (Cons 2 (Cons 2 Nil))
+      update (Cons 1 (Cons 2 (Cons 3 Nil))) 2 2 `shouldBe`
+        Just (Cons 1 (Cons 2 (Cons 2 Nil)))

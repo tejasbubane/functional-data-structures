@@ -3,7 +3,6 @@ module BankersQueueSpec where
 import Test.Hspec
 import BankersQueue
 import Prelude hiding (head, tail)
-import Control.Exception (evaluate)
 
 specs :: SpecWith ()
 specs = describe "Amortized Queue" $ do
@@ -18,18 +17,18 @@ specs = describe "Amortized Queue" $ do
       isEmpty (Queue 2 [2, 3] 2 [1, 5]) `shouldBe` False
 
   describe "head" $ do
-    it "raises exception for empty queue" $ do
-      evaluate (head (empty :: Queue Int)) `shouldThrow` anyException
+    it "returns Nothing for empty queue" $ do
+      head (empty :: Queue Int) `shouldBe` Nothing
     it "is the first element of f for non-empty queue" $ do
-      head (Queue 1 [1] 0 []) `shouldBe` 1
-      head (Queue 2 [2, 3] 2 [1, 5]) `shouldBe` 2
+      head (Queue 1 [1] 0 []) `shouldBe` Just 1
+      head (Queue 2 [2, 3] 2 [1, 5]) `shouldBe` Just 2
 
   describe "tail" $ do
-    it "raises exception for empty queue" $ do
-      evaluate (tail (empty :: Queue Int)) `shouldThrow` anyException
+    it "returns Nothing for empty queue" $ do
+      tail (empty :: Queue String) `shouldBe` Nothing
     it "is everything but the first element for non-empty queue" $ do
-      tail (Queue 1 [1] 0 []) `shouldBe` empty
-      tail (Queue 2 [2, 3] 2 [1, 5]) `shouldBe` Queue 3 [3, 5, 1] 0 []
+      tail (Queue 1 [1] 0 []) `shouldBe` Just empty
+      tail (Queue 2 [2, 3] 2 [1, 5]) `shouldBe` Just (Queue 3 [3, 5, 1] 0 [])
 
   describe "snoc" $ do
     it "adds element to end of queue" $ do

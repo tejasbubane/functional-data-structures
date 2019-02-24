@@ -24,28 +24,28 @@ snoc :: a -> Deque a -> Deque a
 snoc x (Deque lenf fs lenr rs) = check $ Deque lenf fs (lenr + 1) (x:rs)
 
 -- First element from front
-head :: Deque a -> a
-head (Deque 0 [] 0 []) = error "Deque Empty"
-head (Deque 0 [] 1 [x]) = x -- check may leave one element in rear
-head (Deque lenf (x:fs) lenr rs) = x
+head :: Deque a -> Maybe a
+head (Deque 0 [] 0 []) = Nothing
+head (Deque 0 [] 1 [x]) = Just x -- check may leave one element in rear
+head (Deque lenf (x:fs) lenr rs) = Just x
 
 -- Last element (in rear)
-last :: Deque a -> a
-last (Deque 0 [] 0 []) = error "Deque empty"
-last (Deque 1 [x] 0 []) = x -- check may leave one element in front
-last (Deque lenf fs lenr (x:rs)) = x
+last :: Deque a -> Maybe a
+last (Deque 0 [] 0 []) = Nothing
+last (Deque 1 [x] 0 []) = Just x -- check may leave one element in front
+last (Deque lenf fs lenr (x:rs)) = Just x
 
 -- Deque without head
-tail :: Deque a -> Deque a
-tail (Deque 0 [] 0 []) = error "Deque Empty"
-tail (Deque 0 [] 1 [x]) = empty -- check may leave one element in rear
-tail (Deque lenf (f:fs) lenr rs) = check $ Deque (lenf - 1) fs lenr rs
+tail :: Deque a -> Maybe (Deque a)
+tail (Deque 0 [] 0 []) = Nothing
+tail (Deque 0 [] 1 [x]) = Just empty -- check may leave one element in rear
+tail (Deque lenf (f:fs) lenr rs) = Just $ check $ Deque (lenf - 1) fs lenr rs
 
 -- All except last
-init :: Deque a -> Deque a
-init (Deque 0 [] 0 []) = error "Deque empty"
-init (Deque 1 [x] 0 []) = empty -- check may leave one element in front
-init (Deque lenf fs lenr (x:rs)) = check $ Deque lenf fs (lenr - 1) rs
+init :: Deque a -> Maybe (Deque a)
+init (Deque 0 [] 0 []) = Nothing
+init (Deque 1 [x] 0 []) = Just empty -- check may leave one element in front
+init (Deque lenf fs lenr (x:rs)) = Just $ check $ Deque lenf fs (lenr - 1) rs
 
 check :: Deque a -> Deque a
 check dq@(Deque lenf fs lenr rs) =

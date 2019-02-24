@@ -4,7 +4,6 @@ import Prelude hiding (head, tail, last, init)
 
 import Test.Hspec
 import Deque
-import Control.Exception (evaluate)
 
 specs :: SpecWith ()
 specs = describe "Deque" $ do
@@ -33,39 +32,39 @@ specs = describe "Deque" $ do
         Deque 4 [1,2,3,9] 4 [8,4,5,10] -- rebalancing in action!
 
   describe "head" $ do
-    it "raises error for empty deque" $ do
-      evaluate (head empty) `shouldThrow` anyException
+    it "returns Nothing for empty deque" $ do
+      head (empty :: Deque Char) `shouldBe` Nothing
     it "works for single element deque" $ do
-      head (Deque 1 [2] 0 []) `shouldBe` 2
-      head (Deque 0 [] 1 [4]) `shouldBe` 4
+      head (Deque 1 [2] 0 []) `shouldBe` Just 2
+      head (Deque 0 [] 1 [4]) `shouldBe` Just 4
     it "works for multi-element deque" $ do
-      head (Deque 2 [2,3] 1 [4]) `shouldBe` 2
+      head (Deque 2 [2,3] 1 [4]) `shouldBe` Just 2
 
   describe "last" $ do
-    it "raises error for empty deque" $ do
-      evaluate (last empty) `shouldThrow` anyException
+    it "returns Nothing for empty deque" $ do
+      last (empty :: Deque [Int]) `shouldBe` Nothing
     it "works for single element deque" $ do
-      last (Deque 1 [2] 0 []) `shouldBe` 2
-      last (Deque 0 [] 1 [4]) `shouldBe` 4
+      last (Deque 1 [2] 0 []) `shouldBe` Just 2
+      last (Deque 0 [] 1 [4]) `shouldBe` Just 4
     it "works for multi-element deque" $ do
-      last (Deque 2 [2,3] 1 [4]) `shouldBe` 4
+      last (Deque 2 [2,3] 1 [4]) `shouldBe` Just 4
 
   describe "tail" $ do
-    it "raises error for empty deque" $ do
-      evaluate (tail empty) `shouldThrow` anyException
+    it "returns Nothing for empty deque" $ do
+      tail (empty :: Deque Int) `shouldBe` Nothing
     it "works for single element deque" $ do
-      tail (Deque 1 [2] 0 []) `shouldBe` empty
-      tail (Deque 0 [] 1 [4]) `shouldBe` empty
+      tail (Deque 1 [2] 0 []) `shouldBe` Just empty
+      tail (Deque 0 [] 1 [4]) `shouldBe` Just empty
     it "works for multi-element deque" $ do
       tail (Deque 4 [2,3,7,0] 5 [9,10,12,11,19]) `shouldBe`
-        Deque 4 [3,7,0,19] 4 [9,10,12,11]
+        Just (Deque 4 [3,7,0,19] 4 [9,10,12,11])
 
   describe "init" $ do
-    it "raises error for empty deque" $ do
-      evaluate (init empty) `shouldThrow` anyException
+    it "returns Nothing for empty deque" $ do
+      init (empty :: Deque String) `shouldBe` Nothing
     it "works for single element deque" $ do
-      init (Deque 1 [2] 0 []) `shouldBe` empty
-      init (Deque 0 [] 1 [4]) `shouldBe` empty
+      init (Deque 1 [2] 0 []) `shouldBe` Just empty
+      init (Deque 0 [] 1 [4]) `shouldBe` Just empty
     it "works for multi-element deque" $ do
       init (Deque 5 [2,3,7,0,11] 4 [9,10,12,19]) `shouldBe`
-        Deque 4 [2,3,7,0] 4 [10,12,19,11]
+        Just (Deque 4 [2,3,7,0] 4 [10,12,19,11])
