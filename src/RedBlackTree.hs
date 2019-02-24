@@ -24,5 +24,6 @@ member = error "todo"
 insert :: Ord a => a -> RBTree a -> RBTree a
 insert = error "todo"
 
+-- Use this helper function from insert to ensure tree is balanced after every insertion
 balance :: RBTree a -> RBTree a
 balance = error "todo"

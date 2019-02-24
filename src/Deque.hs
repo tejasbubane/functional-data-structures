@@ -2,6 +2,8 @@ module Deque where
 
 import Prelude hiding (head, tail, last, init)
 
+-- Double ended queues
+-- Adding and removing allowed from both ends
 data Deque a =
   Deque Int [a] Int [a]
   deriving (Eq, Show)
