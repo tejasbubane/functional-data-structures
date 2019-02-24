@@ -35,6 +35,7 @@ insert x s = blacken $ ins s
           | x > y     = balance $ Node color left y (ins right)
           | otherwise = s
 
+-- Use this helper function from insert to ensure tree is balanced after every insertion
 balance :: RBTree a -> RBTree a
 balance (Node Black (Node Red a x (Node Red b y c)) z d) =
   Node Red (Node Black a x b) y (Node Black c z d)

@@ -1,5 +1,7 @@
 module List where
 
+import Prelude hiding (head, tail)
+
 data List a =
   Nil | Cons a (List a)
   deriving (Show, Eq)
@@ -14,13 +16,13 @@ isEmpty _   = False
 cons :: a -> List a -> List a
 cons x xs = Cons x xs
 
-hd :: List a -> a
-hd Nil = error "empty list"
-hd (Cons x xs) = x
+head :: List a -> a
+head Nil = error "empty list"
+head (Cons x xs) = x
 
-tl :: List a -> List a
-tl Nil = error "empty list"
-tl (Cons x xs) = xs
+tail :: List a -> List a
+tail Nil = error "empty list"
+tail (Cons x xs) = xs
 
 -- Exercises
 append :: List a -> List a -> List a
